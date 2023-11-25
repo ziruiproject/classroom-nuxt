@@ -13,7 +13,7 @@ export default defineNuxtPlugin(nuxtApp => {
         storageBucket: config.public.storageBucket,
         messagingSenderId: config.public.messagingSenderId,
         appId: config.public.appId,
-        measurementId: config.public.messagingSenderId
+        measurementId: config.public.measurementId
     };
 
     const app = initializeApp(firebaseConfig)
@@ -21,4 +21,10 @@ export default defineNuxtPlugin(nuxtApp => {
     const analytics = getAnalytics(app)
     const auth = getAuth(app)
     const firestore = getFirestore(app)
+
+    nuxtApp.vueApp.provide('auth', auth)
+    nuxtApp.provide('auth', auth)
+
+    nuxtApp.vueApp.provide('firestore', firestore)
+    nuxtApp.provide('firestore', firestore)
 })
