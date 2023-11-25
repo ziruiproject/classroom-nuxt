@@ -4,24 +4,32 @@
         <form @submit.prevent="login">
             <input v-model="email" type="text" />
             <p>{{ email }}</p>
-            <input v-model="password" type="text" />
+            <input v-model="password" type="password" />
             <p>{{ password }}</p>
             <button type="submit"></button>
         </form>
     </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
-export default {
-    setup() {
-        const email = ref('')
-        const password = ref('')
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-        return {
-            email,
-            password
-        }
-    }
+const email = ref('')
+const password = ref('')
+
+const login = () => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user)
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode)
+            console.log(errorMessage)
+        });
 }
 </script>

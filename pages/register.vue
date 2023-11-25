@@ -21,11 +21,12 @@ const password = ref('')
 const register = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email.value, password.value)
+        // Berhasil
         .then((userCredential) => {
-            // Signed up 
             const user = userCredential.user;
             console.log(user)
         })
+        // Gagal
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
