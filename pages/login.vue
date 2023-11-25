@@ -20,7 +20,7 @@ const password = ref('')
 
 const login = () => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user)
