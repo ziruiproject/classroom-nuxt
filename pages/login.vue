@@ -18,18 +18,22 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const email = ref('')
 const password = ref('')
 
+const router = useRouter()
+
 const login = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user)
+            router.push('/')
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode)
             console.log(errorMessage)
+            router.push('/login')
         });
 }
 </script>
