@@ -24,3 +24,4 @@ logs
 !.env.example
 nuxt.config.ts
 service-account.json
+midtrans-nodejs-client
